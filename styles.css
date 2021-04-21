@@ -1,0 +1,113 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: rgb(241, 241, 241);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  font-family: "Poppins", sans-serif;
+}
+
+header {
+  padding-top: 5rem;
+  text-align: center;
+}
+
+.header__title .header__subtitle {
+  font-size: 5rem;
+  font-weight: 400;
+}
+.header__subtitle {
+  margin-top: 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin: 5% 20% 10% 20%;
+  border: solid 2px rgb(83, 125, 238);
+  border-radius: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0.1rem 0.2rem 0.5rem rgb(154, 154, 165);
+}
+
+.content__input {
+  margin: 1rem;
+}
+
+.content__inputFile {
+  opacity: 0;
+  height: 0.1rem;
+  width: 0.1rem;
+}
+
+.content__inputLabel {
+  background-color: rgb(221, 229, 240);
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.content__inputLabel:hover {
+  cursor: pointer;
+  background-color: rgb(195, 207, 224);
+}
+
+.content__inputLabel:focus-within {
+  outline: 1px dotted rgb(61, 70, 87);
+}
+
+.content__inputText {
+  padding-left: 1rem;
+}
+
+.content__button {
+  background-color: rgb(83, 125, 238);
+  color: aliceblue;
+  margin: 1rem;
+  padding: 1rem;
+  border: none;
+  border-radius: 1rem;
+  font-size: 1.15rem;
+}
+
+.content__button:hover {
+  cursor: pointer;
+  background-color: rgb(39, 75, 173);
+}
+
+.content__button:focus {
+  outline: 1px dotted rgb(61, 70, 87);
+}
+
+.content__output {
+  flex-grow: 1;
+  font-size: 1.5rem;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.content__outputResult {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.content__output-item {
+  font-size: 1.5rem;
+  margin: 1rem 1rem;
+  padding: 1rem 1rem;
+  border: solid 1px rgb(25, 63, 79);
+}
+
+.fa-greater-than {
+  margin: 1.5rem 0.1rem;
+  padding: 1rem 0.1rem;
+}

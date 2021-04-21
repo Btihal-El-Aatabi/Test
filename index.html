@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="script" href="script.js" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;1,200&display=swap"
+      rel="stylesheet"
+    />
+    <title>Highest Five</title>
+  </head>
+  <body>
+    <header>
+      <h1 class="header__title">Highest five</h1>
+      <h2 class="header__subtitle">
+        Input a text file with numbers and get the highest five numbers occuring
+        in descendent order
+      </h2>
+    </header>
+    <div class="content">
+      <div class="content__input">
+        <form action="/upload-file" method="POST">
+          <label id="inputLabel" class="content__inputLabel" for="file">
+            <input
+              type="file"
+              name="file"
+              id="file"
+              class="content__inputFile"
+              accept="text/txt"
+            />
+            <i class="fas fa-upload"></i
+            ><span class="content__inputText"
+              >Click here to select a .txt file</span
+            >
+          </label>
+          <button class="content__button" type="submit">Submit</button>
+        </form>
+      </div>
+      <div class="content__output">
+        The five most frequent values are:
+        <div id="output-result" class="content__outputResult"></div>
+      </div>
+    </div>
+  </body>
+</html>
+<script>
+  // handling file input change
+  var inputFile = document.querySelector("#file");
+  var inputLabel = document.querySelector("#inputLabel");
+  var outputResult = document.querySelector("#output-result");
+
+  inputFile.addEventListener("change", showFileName);
+
+  function showFileName(e) {
+    var input = e.srcElement;
+    var fileName = input.files[0].name;
+    console.log("File name:", fileName);
+    inputLabel.querySelector("span").innerHTML = fileName;
+  }
+
+  // handling submit click
+  const form = document.querySelector("form");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const files = document.querySelector("#file").files;
+    const file = files[0];
+    var reader = new FileReader();
+    reader.onload = function () {
+      var content = reader.result;
+      content = content.split("\n");
+      //numbers = [...new Set(content)];
+
+      const result = findHighestFiveNumbers(content);
+
+      let html = [];
+      for (let k of result) {
+        html.push(`<span class="content__output-item">${k}</span>`);
+      }
+
+      outputResult.innerHTML = html.join(
+        '<span><i class="fas fa-greater-than"></i></span>'
+      );
+    };
+
+    reader.readAsText(file);
+  });
+
+  var findHighestFiveNumbers = (content) => {
+    frequencyCount = {};
+
+    for (let k of content) {
+      k = k.trim();
+
+      if (k in frequencyCount) {
+        frequencyCount[k] += 1;
+      } else {
+        console.log(typeof k);
+        frequencyCount[k] = 1;
+      }
+    }
+
+    const sorted = Object.keys(frequencyCount).sort((a, b) => {
+      return frequencyCount[b] - frequencyCount[a];
+    });
+
+    return sorted.slice(0, 5);
+  };
+</script>
